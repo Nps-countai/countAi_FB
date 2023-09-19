@@ -18,7 +18,7 @@ fbData = ref.get()
 uv_df = pd.DataFrame(columns=[])
 conetip_df = pd.DataFrame(columns=[])
 mill_list = []
-final_df = pd.DataFrame(columns=['millName', 'totalCount','totaluvCount' ,'totalconetipCount' ,'total_uv_Defect', 'total_uv_Nondefect', 'total_conetip_Nondefect', 'total_conetip_Defect', 'lastDay_uv_Defect', 'lastDay_uv_Nondefect', 'lastDay_conetip_Nondefect', 'lastDay_conetip_Defect', 'lastuv_inspectionOn', 'lastconetip_inspectionOn','firstInspectionOn'])
+final_df = pd.DataFrame(columns=['millName', 'totalCount','totaluvCount' ,'totalconetipCount' ,'total_uv_Defect', 'total_uv_Nondefect', 'total_conetip_Nondefect', 'total_conetip_Defect', 'lastDay_uv_Defect', 'lastDay_uv_Nondefect', 'lastDay_conetip_Nondefect', 'lastDay_conetip_Defect', 'lastuv_inspectionOn', 'lastconetip_inspectionOn','firstInspectionOn', 'lastDay_totaluvCount', 'lastDay_totalconetipCount', 'lastDay_totalCount'])
 
 for i in fbData:
     mill_list.append(i)
@@ -46,7 +46,10 @@ for i in fbData:
     totalCount = total_uv_Defect+total_uv_Nondefect + total_conetip_Nondefect + total_conetip_Defect
     totaluvCount = total_uv_Defect+total_uv_Nondefect 
     totalconetipCount = total_conetip_Nondefect + total_conetip_Defect
-    data = [millName, totalCount,totaluvCount ,totalconetipCount , total_uv_Defect, total_uv_Nondefect, total_conetip_Nondefect, total_conetip_Defect, lastDay_uv_Defect, lastDay_uv_Nondefect, lastDay_conetip_Nondefect, lastDay_conetip_Defect, lastuv_inspectionOn, lastconetip_inspectionOn,firstInspectionOn]
+    lastDay_totaluvCount = lastDay_uv_Defect + lastDay_uv_Nondefect
+    lastDay_totalconetipCount = lastDay_conetip_Nondefect + lastDay_conetip_Defect
+    lastDay_totalCount = lastDay_totaluvCount + lastDay_totalconetipCount 
+    data = [millName, totalCount,totaluvCount ,totalconetipCount , total_uv_Defect, total_uv_Nondefect, total_conetip_Nondefect, total_conetip_Defect, lastDay_uv_Defect, lastDay_uv_Nondefect, lastDay_conetip_Nondefect, lastDay_conetip_Defect, lastuv_inspectionOn, lastconetip_inspectionOn,firstInspectionOn, lastDay_totaluvCount, lastDay_totalconetipCount, lastDay_totalCount]
     # final_df =final_df._append(data)
     
     final_df.loc[len(final_df)] = data
